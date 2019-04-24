@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>plateforme de construction</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css1/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+<!-- Menu de navigation -->
+
+	<header>
+		<div id="" class="jumbotron bg-dark text-center" style="margin:-50px 0px; color: #fff">
+			<h1>CONSTRUCTION</h1>
+			<span>Bienvenu sur votre plateforme de construction</span>
+		</div>
+		<div class="sticky-stopper">
+			<nav class="navbar navbar-expand-lg">
+		  		{% if connecter %}	<a charset="navbar-brand"><img src="images/logo.jpg" class="rounded-circle" style="height: 40px; width: 40px;margin-right: 15px"></a><span class="navbar-text" style="font-size:20px; font-weight: bolder;text-transform:uppercase">{{user.prenoms}}</span>{% endif %}
+			    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+			    	aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarText">
+				    <ul class="navbar-nav mr-auto">
+				      <li class="nav-item active">
+				        <a class="nav-link" href="/" id="location">Accueil
+				          <span class="sr-only">(current)</span>
+				        </a>
+				      </li>
+				      <li class="nav-item">
+								<div class="dropdown show">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink-2" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Location-Vente Materiel</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-2">
+										<a class="dropdown-item" href="#">Location</a>
+										<a class="dropdown-item" href="vente">Vente</a>
+									</div>
+								</div>
+			
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="#">Recherche Emploie</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="contact">Nous Contacter</a>
+							</li>
+				    </ul>
+				    <ul class="navbar-nav mr-auto" id="menu2">
+						{% if connecter %}
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false" style="color:#fff;">
+									<i class="fas fa-user"></i> Profile </a>
+								<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLRForm"modalLRForm>Mon Profil
+									</a>
+									<a class="dropdown-item" href="#">Historique</a>
+									<a class="dropdown-item" href="deconnexion">Deconnexion</a>
+								</div>
+							</li>
+						{% else %}
+				      <li class="nav-item">
+								<a class="nav-link" data-toggle="modal" data-target="#fullHeightModalRight" href="#" style="margin-right: 30px;"> <i class="fas fa-user-alt"></i>inscription</a>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="connexion"><i class="fas fa-sign-in-alt fa-2x" style="font-size:16px;"></i>connexion</a>
+				      </li>
+						{% endif %}
+						</ul>
+			  </div>
+			</nav>
+		</div>
+		<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog cascading-modal" role="document">
+					<!--Content-->
+					<div class="modal-content">
+
+						<!--Modal cascading tabs-->
+						<div class="modal-c-tabs">
+
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
+										Mes Informations</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-edit"></i>
+										Modifier Mon Profil</a>
+								</li>
+							</ul>
+
+							<!-- Tab panels -->
+							<div class="tab-content">
+								<!--Panel 7-->
+								<div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+									<!--Body-->
+									<div class="modal-body mb-1">
+										<p><span class="user">Nom : </span> {{user.nom}}</p>
+										<p><span class="user">Prenom : </span> {{user.prenoms}}</p>
+										<p><span class="user">E-mail : </span> {{user.email}}</p>
+										<p><span class="user">Numero : </span> {{user.telephone}}</p>
+										<p><span class="user">Mot de passe : </span> {{user.password}}</p>
+									</div>
+									<!--Footer-->
+									<div class="modal-footer">
+										<button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Fermer</button>
+									</div>
+
+								</div>
+								<!--/.Panel 7-->
+
+								<!--Panel 8-->
+								<div class="tab-pane fade" id="panel8" role="tabpanel">
+
+									<!--Body-->
+									<div class="modal-body">
+
+										<form method="post">
+
+										<div class="md-form form-sm mb-5">
+											<input type="text" name="nom" id="modalLRInput12" class="form-control form-control-sm validate" value="{{user.nom}}">
+										</div>
+
+										<div class="md-form form-sm mb-5">
+											<input type="text" name="prenom" id="modalLRInput12" class="form-control form-control-sm validate" value="{{user.prenoms}}">
+										</div>
+
+										<div class="md-form form-sm mb-5">
+											<input type="number" name="phone" id="modalLRInput12" class="form-control form-control-sm validate" value="{{user.telephone}}">
+										</div>
+
+										<div class="md-form form-sm mb-5">
+											<input type="email" name="email" id="modalLRInput12" class="form-control form-control-sm validate" value="{{user.email}}">
+										</div>
+
+										<p>mot de passe : {{user.password}}</p>
+										<input type="hidden" name="type" value="madiform">
+										<input type="hidden" name="idUser" value="{{user.id}}">
+
+										<div class="md-form form-sm mb-5">
+											<input type="password" name="password" id="modalLRInput13" class="form-control form-control-sm validate" placeholder="Nouveau mot passe">
+										</div>
+
+										<div class="text-center form-sm mt-2">
+											<button type="submit" class="btn btn-warning">Modifier <i class="fas fa-sign-in ml-1"></i></button>
+										</div>
+
+									</form>
+
+									</div>
+									<!--Footer-->
+									<div class="modal-footer">
+										<button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Fermer</button>
+									</div>
+								</div>
+								<!--/.Panel 8-->
+							</div>
+
+						</div>
+					</div>
+					<!--/.Content-->
+				</div>
+			</div>
+
+	</header>
+
+	<!-- Modal inscription -->
+	
+<div class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-full-height modal-right" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title w-100 text-center" id="myModalLabel">INSCRIPTION</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-offset-1 col-lg-10">
+						<form>
+							<div class="form-group">
+								<label for="nom">Nom: </label>
+								<div class="">
+									<input type="text" id="nom" name="nom" placeholder="Votre nom" class="form-control">
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<label for="prenom">Prenom: </label>
+								<input type="text" id="prenom" name="prenom" placeholder="Votre prenom" class="form-control">
+							</div>
+		
+							<div class="form-group">
+								<label for="phone">Telephone: </label>
+								<input type="text" id="phone" name="phone" placeholder="Votre Numero" class="form-control">
+							</div>
+		
+							<div class="form-group">
+								<label for="mail">E-mail: </label>
+								<input type="text" id="mail" name="email" placeholder="Votre Email" class="form-control">
+							</div>
+		
+							<div class="form-group">
+								<label for="password">Mot de Passe: </label>
+								<input type="text" id="password" name="password" placeholder="mot de passe" class="form-control">
+							</div>
+		
+							<div class="form-group">
+								<label for="password-confirm">Confirmation Mot de Passe: </label>
+								<input type="text" id="password-confirm" name="passwordC" placeholder="confirmer mot de passe" class="form-control">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer justify-content-center">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+			<button type="button" class="btn btn-warning">S'INSCRIRE</button>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- Section 1 -->
+
+	<section>
+		<div class="">
+			<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+			  <ol class="carousel-indicators">
+			    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+			    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+			  </ol>
+			  <div class="carousel-inner" role="listbox">
+			    <div class="carousel-item active">
+			      <div class="view">
+			        <img class="d-block w-100" src="images/car3.jpg"
+			          alt="chantier" style="height: 400px;">
+			        <div class="mask rgba-black-light"></div>
+			      </div>
+			      <div class="carousel-caption">
+			        <h3 class="h3-responsive"></h3>
+			        <p></p>
+			      </div>
+			    </div>
+			    <div class="carousel-item">
+			      <div class="view">
+			        <img class="d-block w-100" src="images/car4.jpg"
+			          alt="construction" style="height: 400px;">
+			        <div class="mask rgba-black-strong"></div>
+			      </div>
+			      <div class="carousel-caption">
+			        <h3 class="h3-responsive"></h3>
+			        <p></p>
+			      </div>
+			    </div>
+			    <div class="carousel-item">
+			      <div class="view">
+			        <img class="d-block w-100" src="images/housebuilding.jpg"
+			          alt="drainage" style="height: 400px;">
+			        <div class="mask rgba-black-slight"></div>
+			      </div>
+			      <div class="carousel-caption">
+			        <h3 class="h3-responsive"></h3>
+			        <p></p>
+			      </div>
+			    </div>
+			  </div>
+			  <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+		</div>
+	</section>
+
+<!-- Section 2 -->
+	
+	<section>
+		<div class="container">
+			<div class="col-md-12 mt-4 text-center" id="titreCards">
+				<h1>Nos Materiels à louer</h1>
+			</div>
+				
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card-deck">
+							
+								{% for  item in produits %}
+								<!-- Card -->
+								<div class="col-md-4">
+									<div class="card mb-4 mt-4">
+								
+										<!--Card image-->
+										<div class="view overlay">
+											<img class="card-img-top" src="images/{{item.images}}" alt="Card image cap" style="height: 250px;">
+											<a href="#!">
+												<div class="mask rgba-white-slight"></div>
+											</a>
+										</div>
+								
+										<!--Card content-->
+										<div class="card-body text-center">
+								
+												<h4 class="card-title">{{item.nom_produit}}</h4>
+												<h4 class="card-text">{{item.prix_jour}} FCFA</h4>
+												{% if connecter %}
+												<form method="post" action="location">
+													<input type="hidden" name="id" value="{{item.id}}">
+													<input type="hidden" name="typeform" value="valideLocation">
+													<button type="submit" class="btn btn-success">louer</button>	
+												</form>	
+												{% else %}
+													<button type="button" class="btn btn-success showError">louer</button>	
+												{% endif %}					
+										</div>							
+								</div>
+								</div>
+								{% endfor %}		
+														
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script type="text/javascript">
+			$(function(){
+				function afficher(){
+				$('.errorMessage').animate({right:'+=370px'}, 500).delay(5000).animate({right:"-=370px"},500)
+			}
+			$('.showError').click(function(){
+				afficher();
+			});
+			});
+	</script>
+	<div class="errorMessage display-none text-center" style="border:1px solid green; width:350px; position:fixed;top:10px;right:-370px; background:white; "><span style="color:red; font-weight:bold;">veuillez-vous connecter pour effectuer une location </span> <br><a href="connexion" class="btn btn-success">Connexion</a></div>
+
+<!-- pied de page -->
+
+	<footer class="page-footer font-small special-color-dark pt-4">
+	    <div class="container-fluid text-center text-md-left">
+	      <div class="row">
+	        <div class="col-md-4 mt-md-0 mt-3">
+	          <h5 class="text-uppercase">MatConst</h5>
+	          <p>Plateforme de vente de materiaux de construction</p>
+	        </div>
+	        <hr class="clearfix w-100 d-md-none pb-3">
+	        <div class="col-md-4 mb-md-0 mb-3" style="text-align: center;">
+	            <h5 class="text-uppercase">Suivez-Nous</h5>
+
+	            <ul class="list-unstyled">
+	              <li>
+	                <a href="#!"><i class="fab fa-twitter fa-fw blue-text"></i>Twitter</a>
+	              </li>
+	              <li>
+	                <a href="#!"><i class="fab fa-facebook-f fa-fw blue-text"></i>Facebook</a>
+	              </li>
+	              <li>
+	                <a href="#!"><i class="fab fa-youtube"></i>Youtube</a>
+	              </li>
+	            </ul>
+
+	          </div>
+	          <div class="col-md-4 mb-md-0 mb-3" style="text-align: right;">
+	            <h5 class="text-uppercase">Liens Utiles</h5>
+	            <ul class="list-unstyled">
+	              <li>
+	                <a href="#!">Location de Meteriel</a>
+	              </li>
+	              <li>
+	                <a href="#!">Recherche d'emploi</a>
+	              </li>
+	              <li>
+	                <a href="#!">Inscription</a>
+	              </li>
+	              <li>
+	                <a href="#!">Connexion</a>
+	              </li>
+	            </ul>
+	          </div>
+	      </div>
+	    </div>
+	    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+	      <a href=""> Projet Avril-Base de donnée | NaN Not a Number </a>
+	    </div>
+	</footer>
+</body>
+</html>

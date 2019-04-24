@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>plateforme de construction</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css1/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>
+  	<style type="text/css">
+  		
+  	</style>
+</head>
+<body>
+
+<!-- Menu de navigation -->
+
+	<header>
+		<div id="" class="jumbotron bg-dark text-center" style="margin:-50px 0px; color: #fff">
+				<h1>CONSTRUCTION</h1>
+				<span>Bienvenu sur votre plateforme de construction</span>
+		</div>
+		<div class="">
+			<nav class="navbar navbar-expand-lg sticky-top ">
+		  		{% if connecter %}	<a charset="navbar-brand"><img src="images/logo.jpg" class="rounded-circle" style="height: 40px; width: 40px;margin-right: 15px"></a><span class="navbar-text" style="font-size:20px; font-weight: bolder;text-transform:uppercase">{{user.prenoms}}</span>{% endif %}
+			    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+			    	aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarText">
+				    <ul class="navbar-nav mr-auto">
+				      <li class="nav-item active">
+				        <a class="nav-link" href="/" id="location">Accueil
+				          <span class="sr-only">(current)</span>
+				        </a>
+				      </li>
+				      <li class="nav-item">
+									<div class="dropdown show">
+										<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink-2" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">Location-Vente Materiel</a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-2">
+											<a class="dropdown-item" href="location">Location</a>
+											<a class="dropdown-item" href="vente">Vente</a>
+										</div>
+									</div>
+				
+								</li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="#">Recherche Emploie</a>
+				      </li>
+				    </ul>
+				    <form method="post" class="form-inline">
+      					<div class="md-form my-0">
+        					<input class="form-control mr-sm-2" type="email" name="email" placeholder="Email" aria-label="Email">
+      					</div>
+      					<div class="md-form my-0">
+        					<input class="form-control mr-sm-2" type="password" name="password" placeholder="Mot de Pass" aria-label="password">
+        					<button type="submit" class="btn btn-success" style="margin:-30px 0px; padding: -10px -20px !important">Connexion</button>
+      					</div>
+    				</form>
+			  </div>
+			</nav>
+		</div>
+	</header>
+
+<!-- Section 1 -->
+
+	<section>
+		<div class="">
+			<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+			  <ol class="carousel-indicators">
+			    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+			    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+			  </ol>
+			  <div class="carousel-inner" role="listbox">
+			    <div class="carousel-item active">
+			      <div class="view">
+			        <img class="d-block w-100" src="images/chantier.jpg"
+			          alt="chantier" style="height: 400px;">
+			        <div class="mask rgba-black-light"></div>
+			      </div>
+			      <div class="carousel-caption">
+			        <h3 class="h3-responsive">Chantier</h3>
+			        <p></p>
+			      </div>
+			    </div>
+			    <div class="carousel-item">
+			      <div class="view">
+			        <img class="d-block w-100" src="images/construction.jpg"
+			          alt="construction" style="height: 400px;">
+			        <div class="mask rgba-black-strong"></div>
+			      </div>
+			      <div class="carousel-caption">
+			        <h3 class="h3-responsive">Fer à beton</h3>
+			        <p></p>
+			      </div>
+			    </div>
+			    <div class="carousel-item">
+			      <div class="view">
+			        <img class="d-block w-100" src="images/drainage.jpg"
+			          alt="drainage" style="height: 400px;">
+			        <div class="mask rgba-black-slight"></div>
+			      </div>
+			      <div class="carousel-caption">
+			        <h3 class="h3-responsive">Drainage</h3>
+			        <p></p>
+			      </div>
+			    </div>
+			  </div>
+			  <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+		</div>
+	</section>
+
+<!-- Section 2 -->
+
+<section >
+		<div class="container text-center mt-4" style="margin-left: 300px;">
+				<div class="row">
+						<div class="col-lg-offset-2 col-lg-8">
+								<h1 class="" style="color: orange; font-weight: bold;">QUI SOMMES NOUS ?</h1>
+								<p class="text-justify">
+										MatConst est une plateforme de construction qui met à la disposition des personnes en mesure de construire des materiaux de construction de qualité et à moindre cout selon votre niveau de marchandise. Aussi nous
+										offrons à l'aide du menu emploi des employés specialisés dans le domaine de la construction.
+								</p>
+						</div>
+				</div>
+		</div>
+</section>
+
+<!-- Section 3 -->
+
+	<section class="mb-4">
+		<div class="container col-lg-offset-3 col-lg-6">
+		    <h2 class="h1-responsive font-weight-bold text-center my-4">Contactez Nous</h2>
+		    <p class="text-center w-responsive mx-auto mb-5">Vous avez des questions, des suggestions, preoccupations et autres;
+		    contactez vous en envoyant votre message via le formulaire</p>
+
+		    <div class="row">
+		        <div class="col-md-9 mb-md-0 mb-5">
+		            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+		                <div class="row">
+		                    <div class="col-md-6">
+		                        <div class="md-form mb-0">
+		                            <input type="text" id="name" name="name" class="form-control">
+		                            <label for="name" class="">Votre Nom</label>
+		                        </div>
+		                    </div>
+		                    <div class="col-md-6">
+		                        <div class="md-form mb-0">
+		                            <input type="text" id="email" name="email" class="form-control">
+		                            <label for="email" class="">Votre E-mail</label>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="row">
+		                    <div class="col-md-12">
+		                        <div class="md-form mb-0">
+		                            <input type="text" id="subject" name="subject" class="form-control">
+		                            <label for="subject" class="">Sujet</label>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="row">
+		                    <div class="col-md-12">
+
+		                        <div class="md-form">
+		                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+		                            <label for="message">Votre Commentaire</label>
+		                        </div>
+
+		                    </div>
+		                </div>
+		            </form>
+
+		            <div class="text-center text-md-left">
+		                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Envoyer</a>
+		            </div>
+		            <div class="status"></div>
+		        </div>
+		        <div class="col-md-3 text-center">
+		            <ul class="list-unstyled mb-0">
+		                <li><i class="fas fa-map-marker-alt fa-2x"></i>
+		                    <p>Angré, Nouveau CHU, Gestoci, NaN</p>
+		                </li>
+
+		                <li><i class="fas fa-phone mt-4 fa-2x"></i>
+		                    <p>+ 225 09 12 74 54</p>
+		                </li>
+
+		                <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+		                    <p>sorodaouda82@gmail.com</p>
+		                </li>
+		            </ul>
+		        </div>
+		    </div>
+	    </div>
+	</section>
+
+<!-- pied de page -->
+
+<footer class="page-footer font-small special-color-dark pt-4">
+		<div class="container-fluid text-center text-md-left">
+			<div class="row">
+				<div class="col-md-4 mt-md-0 mt-3">
+					<h5 class="text-uppercase">MatConst</h5>
+					<p>Plateforme de vente de materiaux de construction</p>
+				</div>
+				<hr class="clearfix w-100 d-md-none pb-3">
+				<div class="col-md-4 mb-md-0 mb-3" style="text-align: center;">
+						<h5 class="text-uppercase">Suivez-Nous</h5>
+
+						<ul class="list-unstyled">
+							<li>
+								<a href="#!"><i class="fab fa-twitter fa-fw blue-text"></i>Twitter</a>
+							</li>
+							<li>
+								<a href="#!"><i class="fab fa-facebook-f fa-fw blue-text"></i>Facebook</a>
+							</li>
+							<li>
+								<a href="#!"><i class="fab fa-youtube"></i>Youtube</a>
+							</li>
+						</ul>
+
+					</div>
+					<div class="col-md-4 mb-md-0 mb-3" style="text-align: right;">
+						<h5 class="text-uppercase">Liens Utiles</h5>
+						<ul class="list-unstyled">
+							<li>
+								<a href="#!">Location de Meteriel</a>
+							</li>
+							<li>
+								<a href="#!">Recherche d'emploi</a>
+							</li>
+							<li>
+								<a href="#!">Inscription</a>
+							</li>
+							<li>
+								<a href="#!">Connexion</a>
+							</li>
+						</ul>
+					</div>
+			</div>
+		</div>
+		<div class="footer-copyright text-center py-3">© 2018 Copyright:
+			<a href=""> Projet Avril-Base de donnée | NaN Not a Number </a>
+		</div>
+</footer>
+</body>
+</html>

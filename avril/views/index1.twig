@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>plateforme de construction</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css1/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>²
+</head>
+<body>
+
+<!-- Menu de navigation -->
+
+	<header>
+		<div id="" class="jumbotron bg-dark text-center" style="margin:-50px 0px; color: #fff">
+			<h1>CONSTRUCTION</h1>
+			<span>Bienvenu sur votre plateforme de construction</span>
+		</div>
+		<div class="sticky-stopper">
+			<nav class="navbar navbar-expand-lg">
+		  	{% if connecter %}	<a charset="navbar-brand"><img src="images/logo.jpg" class="rounded-circle" style="height: 40px; width: 40px;margin-right: 15px"></a><span class="navbar-text" style="font-size:20px; font-weight: bolder;text-transform:uppercase">{{user.prenoms}}</span>{% endif %}
+			    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+			    	aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarText">
+				    <ul class="navbar-nav mr-auto">
+				      <li class="nav-item active">
+				        <a class="nav-link" href="#" id="location">Accueil
+				          <span class="sr-only">(current)</span>
+				        </a>
+				      </li>
+				      <li class="nav-item">
+								<div class="dropdown show">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink-2" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Location-Vente Materiel</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-2">
+										<a class="dropdown-item" href="location">Location</a>
+										<a class="dropdown-item" href="vente">Vente</a>
+									</div>
+								</div>
+			
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="#">Recherche Emploie</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="contact">Nous Contacter</a>
+							</li>
+				    </ul>
+				    <ul class="navbar-nav mr-auto" id="menu2">
+						{% if connecter %}
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false" style="color:#fff;">
+									<i class="fas fa-user"></i> Profile </a>
+								<div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLRForm"modalLRForm>Mon Profil
+									</a>
+									<a class="dropdown-item" href="#">Historique</a>
+									<a class="dropdown-item" href="deconnexion">Deconnexion</a>
+								</div>
+							</li>
+						{% else %}
+				      <li class="nav-item">
+								<a class="nav-link" data-toggle="modal" data-target="#fullHeightModalRight" href="#" style="margin-right: 30px;"> <i class="fas fa-user-alt"></i>inscription</a>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="connexion"><i class="fas fa-sign-in-alt fa-2x" style="font-size:16px;"></i>connexion</a>
+				      </li>
+						{% endif %}
+						</ul>
+			  </div>
+			</nav>
+		</div>
+		<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog cascading-modal" role="document">
+					<!--Content-->
+					<div class="modal-content">
+
+						<!--Modal cascading tabs-->
+						<div class="modal-c-tabs">
+
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
+										Mes Informations</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-edit"></i>
+										Modifier Mon Profil</a>
+								</li>
+							</ul>
+
+							<!-- Tab panels -->
+							<div class="tab-content">
+								<!--Panel 7-->
+								<div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+									<!--Body-->
+									<div class="modal-body mb-1">
+										<p><span class="user">Nom :</span> {{user.nom}}</p>
+										<p><span class="user">Prenom : </span> {{user.prenoms}}</p>
+										<p><span class="user">E-mail : </span> {{user.email}}</p>
+										<p><span class="user">Numero : </span> {{user.telephone}}</p>
+										<p><span class="user">Mot de passe : </span> {{user.password}}</p>
+									</div>
+									<!--Footer-->
+									<div class="modal-footer">
+										<button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Fermer</button>
+									</div>
+
+								</div>
+								<!--/.Panel 7-->
+
+								<!--Panel 8-->
+								<div class="tab-pane fade" id="panel8" role="tabpanel">
+
+									<!--Body-->
+									<div class="modal-body">
+
+									<form method="post">
+
+										<div class="md-form form-sm mb-5">
+											<input type="text" name="nom" id="modalLRInput12" class="form-control form-control-sm validate" value="{{user.nom}}">
+										</div>
+
+										<div class="md-form form-sm mb-5">
+											<input type="text" name="prenom" id="modalLRInput12" class="form-control form-control-sm validate" value="{{user.prenoms}}">
+										</div>
+
+										<div class="md-form form-sm mb-5">
+											<input type="number" name="phone" id="modalLRInput12" class="form-control form-control-sm validate" value="{{user.telephone}}">
+										</div>
+
+										<div class="md-form form-sm mb-5">
+											<input type="email" name="email" id="modalLRInput12" class="form-control form-control-sm validate" value="{{user.email}}">
+										</div>
+
+										<p>mot de passe : {{user.password}}</p>
+										<input type="hidden" name="type" value="madiform">
+										<input type="hidden" name="idUser" value="{{user.id}}">
+
+										<div class="md-form form-sm mb-5">
+											<input type="password" name="password" id="modalLRInput13" class="form-control form-control-sm validate" placeholder="Nouveau mot passe">
+										</div>
+
+										<div class="text-center form-sm mt-2">
+											<button type="submit" class="btn btn-warning">Modifier <i class="fas fa-sign-in ml-1"></i></button>
+										</div>
+
+									</form>
+
+									</div>
+									<!--Footer-->
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Fermer</button>
+									</div>
+								</div>
+								<!--/.Panel 8-->
+							</div>
+
+						</div>
+					</div>
+					<!--/.Content-->
+				</div>
+			</div>
+
+	</header>
+	{% if showmodal %}
+		<!-- JQuery -->
+
+		<script type="text/javascript">
+			$('#fullHeightModalRight').modal('show')
+		</script>
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	{% endif %}
+	<!-- Modal inscription -->
+	
+<div class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-full-height modal-right" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title w-100 text-center" id="myModalLabel">INSCRIPTION</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-offset-1 col-lg-10">
+						<form method="post">
+							<p style="color:red; font-size:15px;">{{ conform }}</p>
+							<div class="form-group">
+								<label for="nom">Nom: </label>
+								<div class="">
+									<input type="text" id="nom" name="nom" placeholder="Votre nom" class="form-control">
+								</div>
+							</div>
+		
+							<div class="form-group">
+								<label for="prenom">Prenom: </label>
+								<input type="text" id="prenom" name="prenom" placeholder="Votre prenom" class="form-control">
+							</div>
+		
+							<div class="form-group">
+								<label for="phone">Telephone: </label>
+								<input type="number" id="phone" name="phone" placeholder="Votre Numero" class="form-control">
+							</div>
+		
+							<div class="form-group">
+								<label for="mail">E-mail: </label>
+								<input type="email" id="mail" name="email" placeholder="Votre Email" class="form-control">
+							</div>
+		
+							<div class="form-group">
+								<label for="password">Mot de Passe: </label>
+								<input type="password" id="password" name="password" placeholder="mot de passe" class="form-control">
+							</div>
+		
+							<div class="form-group">
+								<label for="password-confirm">Confirmation Mot de Passe: </label>
+								<input type="password" id="password-confirm" name="passwordC" placeholder="confirmer mot de passe" class="form-control">
+							</div>
+							<div>
+								<button type="submit" class="btn btn-warning">S'INSCRIRE</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer justify-content-center">
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+			
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- Section 1 -->
+
+	<section>
+		<div class="">
+			<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+			  <ol class="carousel-indicators">
+			    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+			    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+			  </ol>
+			  <div class="carousel-inner" role="listbox">
+			    <div class="carousel-item active">
+			      <div class="view">
+			        <img class="d-block w-100" src="images/car3.jpg"
+			          alt="chantier" style="height: 400px;">
+			        <div class="mask rgba-black-light"></div>
+			      </div>
+			      <div class="carousel-caption">
+			        <h3 class="h3-responsive"></h3>
+			        <p></p>
+			      </div>
+			    </div>
+			    <div class="carousel-item">
+			      <div class="view">
+			        <img class="d-block w-100" src="images/car4.jpg"
+			          alt="construction" style="height: 400px;">
+			        <div class="mask rgba-black-strong"></div>
+			      </div>
+			      <div class="carousel-caption">
+			        <h3 class="h3-responsive"></h3>
+			        <p></p>
+			      </div>
+			    </div>
+			    <div class="carousel-item">
+			      <div class="view">
+			        <img class="d-block w-100" src="images/housebuilding.jpg"
+			          alt="drainage" style="height: 400px;">
+			        <div class="mask rgba-black-slight"></div>
+			      </div>
+			      <div class="carousel-caption">
+			        <h3 class="h3-responsive"></h3>
+			        <p></p>
+			      </div>
+			    </div>
+			  </div>
+			  <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+		</div>
+	</section>
+
+<!-- Section 2 -->
+	
+	<section>
+		<div class="container">
+			<div class="row">
+					<div class="colo-md-4 mt-4">
+						<img src="images/Onligne.jpg" alt="">
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-7 mt-4">
+						<div>
+							<h5><i class="fas fa-hammer"></i>    Pourquoi acheter ces materiaux de constructions en ligne ?</h5><br>
+							<p>De plus en plus de personnes souhaitent réaliser leurs travaux 
+									eux-mêmes. L’achat en ligne permet d’avoir des produits directement 
+									livrés à domicile ou sur chantier. Plus besoin de se déplacer chez un négoce,
+									nous proposons de nombreux matériaux de construction.
+						  </p>
+						</div><br><br>
+						<div>
+								<h5><i class="fas fa-anchor"></i>    Un grand choix de produit en Ligne</h5><br>
+								<p>Aujourd’hui les matériaux de construction ne se résument pas à du ciment, de 
+									la brique, du plâtre ou des graviers. En effet, ce terme peut aussi être utilisé 
+									pour désigner de nombreux produits. Trouver pour chaque corps plusieurs références à 
+									commander en ligne.
+									Vous recherchez une solution pour rénover les menuiseries de votre maison, des tuyaux
+									 pour un réseau d’assainissement, ou encore une rénovation complète à réaliser. Nous proposons 
+									 en ligne une large gamme livrable à domicile ou sur chantier.
+								</p>
+							</div>
+					</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-md-12 mt-4" id="titreCards">
+				<h1>Nos selections</h1>
+			</div>
+				<div class="container"></div>
+					<div class="row">
+					<div class="col-md-12">
+						<div class="card-deck">
+								<div class="card mb-4 mt-4">
+										<div class="view overlay">
+												<img class="card-img-top" src="images/ciment.jpg" alt="ciment" style="height:300px;">
+												<a href="#!">
+													<div class="mask rgba-white-slight"></div>
+												</a>
+											</div>
+											<div class="card-body">
+									
+												<h4 class="card-title">Ciment: Belier-Cuirasse</h4>
+												<p class="card-text">Prix Unitaire: 6500 FCFA</9><br><br>
+												<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+												<span><input type="number" min="1" placeholder="1" style="width:40px;"></span><a href="" style="margin-left:180px;">ajouter <i class="fas fa-cart-plus"></i></a>
+									
+											</div>
+							
+								</div>
+								<!-- Card -->
+							
+								<!-- Card -->
+								<div class="card mb-4 mt-4">
+							
+									<!--Card image-->
+									<div class="view overlay">
+											<img class="card-img-top" src="images/fer.jpg" alt="Fer à beton" style="height:300px;">
+											<a href="#!">
+												<div class="mask rgba-white-slight"></div>
+											</a>
+										</div>
+										<div class="card-body">
+								
+											<h4 class="card-title">Fer à baton</h4>
+											<p class="card-text">Prix Unitaire: 30000 FCFA</9><br><br>
+											<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+											<span><input type="number" min="1" placeholder="1" style="width:40px;"></span><a href="" style="margin-left:180px;">ajouter <i class="fas fa-cart-plus"></i></a>
+								
+										</div>
+							
+								</div>
+								<!-- Card -->
+							
+								<!-- Card -->
+								<div class="card mb-4 mt-4">
+							
+									<!--Card image-->
+									<div class="view overlay">
+											<img class="card-img-top" src="images/outil.jpg" alt="outil de peinture" style="height:300px;">
+											<a href="#!">
+												<div class="mask rgba-white-slight"></div>
+											</a>
+										</div>
+										<div class="card-body">
+								
+											<h4 class="card-title">Outil de peinture</h4>
+											<p class="card-text">Prix Unitaire: 10000 FCFA</9><br><br>
+											<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+											<span><input type="number" min="1" placeholder="1" style="width:40px;"></span><a href="" style="margin-left:180px;">ajouter <i class="fas fa-cart-plus"></i></a>
+								
+										</div>
+							
+								</div>
+								<!-- Card -->
+							
+							</div>
+							<!-- Card deck -->
+													<!-- Card deck -->
+						<div class="card-deck">
+
+								<!-- Card -->
+								<div class="card mb-4">
+							
+									<!--Card image-->
+									<div class="view overlay">
+											<img class="card-img-top" src="images/betonniére1.jpg" alt="betonnière" style="height:250px;">
+											<a href="#!">
+												<div class="mask rgba-white-slight"></div>
+											</a>
+										</div>
+										<div class="card-body text-center">
+								
+											<h4 class="card-title">Bétonnière</h4>
+											<h4 class="card-text">30000  FCFA</h4>
+											<button class="btn btn-success">louer</button>
+								
+										</div>
+							
+								</div>
+								<!-- Card -->
+							
+								<!-- Card -->
+								<div class="card mb-4">
+							
+									<!--Card image-->
+									<div class="view overlay">
+											<img class="card-img-top" src="images/coffrage.jpg" alt="Coffrage Metalique" style="height:250px;">
+											<a href="#!">
+												<div class="mask rgba-white-slight"></div>
+											</a>
+										</div>
+										<div class="card-body text-center">
+								
+											<h4 class="card-title">Coffrage Metalique</h4>
+											<h4 class="card-text">100000  FCFA</h4>
+											<button class="btn btn-success">louer</button>
+								
+										</div>
+							
+								</div>
+								<!-- Card -->
+							
+								<!-- Card -->
+								<div class="card mb-4">
+							
+									<!--Card image-->
+									<div class="view overlay">
+											<img class="card-img-top" src="images/échafaudages.png" alt="Echafaudage" style="height:250px;">
+											<a href="#!">
+												<div class="mask rgba-white-slight"></div>
+											</a>
+										</div>
+										<div class="card-body text-center">
+								
+											<h4 class="card-title">Echafaudage</h4>
+											<h4 class="card-text">90000  FCFA</h4>
+											<button class="btn btn-success">louer</button>
+								
+										</div>
+							
+								</div>
+								<!-- Card -->
+							
+							</div>
+							<!-- Card deck -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+<!-- pied de page -->
+
+	<footer class="page-footer font-small special-color-dark pt-4">
+	    <div class="container-fluid text-center text-md-left">
+	      <div class="row">
+	        <div class="col-md-4 mt-md-0 mt-3">
+	          <h5 class="text-uppercase">MatConst</h5>
+	          <p>Plateforme de vente de materiaux de construction</p>
+	        </div>
+	        <hr class="clearfix w-100 d-md-none pb-3">
+	        <div class="col-md-4 mb-md-0 mb-3" style="text-align: center;">
+	            <h5 class="text-uppercase">Suivez-Nous</h5>
+
+	            <ul class="list-unstyled">
+	              <li>
+	                <a href="#!"><i class="fab fa-twitter fa-fw blue-text"></i>Twitter</a>
+	              </li>
+	              <li>
+	                <a href="#!"><i class="fab fa-facebook-f fa-fw blue-text"></i>Facebook</a>
+	              </li>
+	              <li>
+	                <a href="#!"><i class="fab fa-youtube"></i>Youtube</a>
+	              </li>
+	            </ul>
+
+	          </div>
+	          <div class="col-md-4 mb-md-0 mb-3" style="text-align: right;">
+	            <h5 class="text-uppercase">Liens Utiles</h5>
+	            <ul class="list-unstyled">
+	              <li>
+	                <a href="#!">Location de Meteriel</a>
+	              </li>
+	              <li>
+	                <a href="#!">Recherche d'emploi</a>
+	              </li>
+	              <li>
+	                <a href="#!">Inscription</a>
+	              </li>
+	              <li>
+	                <a href="#!">Connexion</a>
+	              </li>
+	            </ul>
+	          </div>
+	      </div>
+	    </div>
+	    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+	      <a href=""> Projet Avril-Base de donnée | NaN Not a Number </a>
+	    </div>
+	</footer>
+</body>
+</html>
